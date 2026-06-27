@@ -73,18 +73,23 @@ $(document).ready(function () {
     autoplay: true,
     autoplayTimeOut: 2000,
     autoplayHoverPause: true,
+    nav: true,
+    navText: [
+      '<i class="fas fa-chevron-left"></i>',
+      '<i class="fas fa-chevron-right"></i>'
+    ],
     responsive: {
       0: {
         items: 1,
-        nav: false
+        nav: true
       },
       600: {
         items: 2,
-        nav: false
+        nav: true
       },
       1000: {
         items: 3,
-        nav: false
+        nav: true
       }
     }
   });

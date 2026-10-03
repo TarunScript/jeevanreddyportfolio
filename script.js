@@ -44,7 +44,6 @@ $(document).ready(function () {
       "Founder",
       "CEO",
       "Public Speaker",
-      "Tech Builder",
       "Team Leader"
     ],
     typeSpeed: 100,
@@ -57,7 +56,6 @@ $(document).ready(function () {
       "Founder",
       "CEO",
       "Public Speaker",
-      "Tech Builder",
       "Team Leader"
     ],
     typeSpeed: 100,

@@ -465,7 +465,7 @@ section .title::after {
 }
 
 .skills .title::after {
-  content: "—What I Know ?—";
+  content: "—Founder & Tech Leadership—";
 }
 
 .skills .skills-content .column {
@@ -475,21 +475,76 @@ section .title::after {
 .skills .skills-content .left .text {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  color: #1e3551;
 }
 
 .skills .skills-content .left p {
   text-align: justify;
 }
 
+.skills-list {
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.skills-list li {
+  list-style: none;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #444;
+  font-size: 14px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.skills-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #1e3551;
+  font-weight: bold;
+}
+
+.skills-list li strong {
+  color: #1e3551;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 24px 0;
+}
+
+.tech-tag {
+  background: #fff;
+  color: #1e3551;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid rgba(30, 53, 81, 0.15);
+  box-shadow: 0 2px 6px rgba(30, 53, 81, 0.05);
+  transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+  background: #1e3551;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 53, 81, 0.15);
+}
+
 .skills .skills-content .left a {
   display: inline-block;
   background: #1e3551;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  padding: 8px 16px;
-  margin-top: 20px;
+  padding: 10px 24px;
+  margin-top: 10px;
   border-radius: 6px;
   border: 2px solid #1e3551;
   transition: all 0.3s ease;
@@ -513,19 +568,20 @@ section .title::after {
 }
 
 .skills .skills-content .right .bars {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .skills .skills-content .right .info {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   align-items: center;
   justify-content: space-between;
 }
 
 .skills .skills-content .right span {
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
+  color: #222;
 }
 
 .skills .skills-content .right .line {
@@ -546,6 +602,26 @@ section .title::after {
   background: linear-gradient(90deg, #1e3551, #2e86de);
   border-radius: 4px;
   transition: width 1.5s ease;
+}
+
+.skills-content .right .prod-strategy::before {
+  width: 92%;
+}
+
+.skills-content .right .startup-exec::before {
+  width: 90%;
+}
+
+.skills-content .right .cyber-sec::before {
+  width: 88%;
+}
+
+.skills-content .right .data-analytics::before {
+  width: 86%;
+}
+
+.skills-content .right .leadership::before {
+  width: 92%;
 }
 
 .skills-content .right .python::before {

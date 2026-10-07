@@ -41,10 +41,10 @@ $(document).ready(function () {
 
   var typed = new Typed(".typing", {
     strings: [
-      "Founder",
-      "CEO",
-      "Public Speaker",
-      "Team Leader"
+      "Founder & CEO",
+      "Entrepreneur",
+      "Venture Builder",
+      "Public Speaker"
     ],
     typeSpeed: 100,
     backSpeed: 60,
@@ -53,10 +53,10 @@ $(document).ready(function () {
 
   var typed = new Typed(".typing-2", {
     strings: [
-      "Founder",
-      "CEO",
-      "Public Speaker",
-      "Team Leader"
+      "Founder & CEO",
+      "Entrepreneur",
+      "Venture Builder",
+      "Public Speaker"
     ],
     typeSpeed: 100,
     backSpeed: 60,
@@ -89,6 +89,110 @@ $(document).ready(function () {
         items: 3,
         nav: true
       }
+    }
+  });
+
+  // ===== Moments & Milestones Gallery Tabs ===== //
+  $(".gallery-tab-btn").click(function () {
+    var category = $(this).data("category");
+    $(".gallery-tab-btn").removeClass("active");
+    $(this).addClass("active");
+
+    $(".gallery-category-pane").removeClass("active");
+    $("#pane-" + category).addClass("active");
+  });
+
+  // ===== Gallery Expand / Show Less Toggle ===== //
+  $(".gallery-toggle-btn").click(function () {
+    var targetId = $(this).data("target");
+    var total = $(this).data("total");
+    var $pane = $("#" + targetId);
+    var $hiddenItems = $pane.find(".gallery-card.gallery-item-hidden, .gallery-card.gallery-item-revealed");
+
+    if ($(this).hasClass("expanded")) {
+      $hiddenItems.addClass("gallery-item-hidden").removeClass("gallery-item-revealed");
+      $(this).removeClass("expanded");
+      $(this).html('<i class="fas fa-th-large"></i> View All Photos (' + total + ')');
+    } else {
+      $hiddenItems.removeClass("gallery-item-hidden").addClass("gallery-item-revealed");
+      $(this).addClass("expanded");
+      $(this).html('<i class="fas fa-compress-alt"></i> Show Less');
+    }
+  });
+
+  // ===== Photo Lightbox Modal ===== //
+  var currentLightboxIndex = 0;
+  var currentLightboxItems = [];
+
+  function openLightbox(index, items) {
+    currentLightboxIndex = index;
+    currentLightboxItems = items;
+    updateLightboxContent();
+    $("#photoLightbox").addClass("active");
+    $("body").css("overflow", "hidden");
+  }
+
+  function closeLightbox() {
+    $("#photoLightbox").removeClass("active");
+    $("body").css("overflow", "auto");
+  }
+
+  function updateLightboxContent() {
+    if (!currentLightboxItems.length) return;
+    var item = currentLightboxItems[currentLightboxIndex];
+    $("#lightboxImg").attr("src", item.src).attr("alt", item.title);
+    $("#lightboxTitle").text(item.title);
+    $("#lightboxTag").text(item.tag);
+  }
+
+  $(document).on("click", ".gallery-card", function () {
+    var $activePane = $(this).closest(".gallery-category-pane");
+    var $cards = $activePane.find(".gallery-card");
+    var items = [];
+    var clickedIndex = 0;
+    var thisCard = this;
+
+    $cards.each(function (idx) {
+      var src = $(this).find("img").attr("src");
+      var title = $(this).data("title") || $(this).find("h4").text();
+      var tag = $(this).data("tag") || $(this).find(".gallery-badge").text();
+      items.push({ src: src, title: title, tag: tag });
+      if (this === thisCard) {
+        clickedIndex = idx;
+      }
+    });
+
+    openLightbox(clickedIndex, items);
+  });
+
+  $("#lightboxClose, .lightbox-backdrop").click(function () {
+    closeLightbox();
+  });
+
+  $("#lightboxPrev").click(function (e) {
+    e.stopPropagation();
+    if (currentLightboxItems.length > 0) {
+      currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length;
+      updateLightboxContent();
+    }
+  });
+
+  $("#lightboxNext").click(function (e) {
+    e.stopPropagation();
+    if (currentLightboxItems.length > 0) {
+      currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxItems.length;
+      updateLightboxContent();
+    }
+  });
+
+  $(document).keydown(function (e) {
+    if (!$("#photoLightbox").hasClass("active")) return;
+    if (e.key === "Escape") {
+      closeLightbox();
+    } else if (e.key === "ArrowLeft") {
+      $("#lightboxPrev").click();
+    } else if (e.key === "ArrowRight") {
+      $("#lightboxNext").click();
     }
   });
 });
